@@ -1,7 +1,11 @@
-ARG	BASE_IMAGE=$BASE_IMAGE
-FROM	$BASE_IMAGE AS rootfs
+ARG     BASE_IMG=$BASE_IMG
+FROM    $BASE_IMG AS base
 
-RUN	apk --update --no-cache upgrade 
+RUN     apk --update --no-cache upgrade
+
+
+
+FROM    base as build
 
 RUN	apk --update --no-cache add \
 	busybox-static
@@ -27,7 +31,7 @@ RUN	ln -s ../tmp var/tmp
 RUN	ln -s ../run var/run
 RUN	ln -s bin sbin	
 
-RUN	 cp -a /bin/busybox.static bin/busybox
+RUN	cp -a /bin/busybox.static bin/busybox
 
 RUN	chroot /rootfs /bin/busybox --install -s /bin
 
@@ -41,4 +45,4 @@ COPY	files/ /rootfs/
 
 FROM	scratch
 
-COPY	--from=rootfs /rootfs/ /
+COPY	--from=build /rootfs/ /

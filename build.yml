@@ -1,0 +1,5 @@
+image: os-busybox
+org: dengleros
+gitrepo: https://github.com/DenglerOS/os-busybox.git
+arches:
+  - amd64
