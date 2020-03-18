@@ -14,7 +14,7 @@ WORKDIR	/rootfs
 
 RUN	mkdir -p \
 	run/resolvconf \
-	etc/unitfiles \
+	run/rustysd \
 	lib/firmware \
 	lib/modules \
 	var/log \
