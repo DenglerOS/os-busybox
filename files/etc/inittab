@@ -23,7 +23,7 @@
 
 
 # finally start rustysd
-::respawn:/bin/rustysd --config /etc/rustysd
+::respawn:/bin/rustysd --config /etc/rustysd &> /var/log/rustysd.log
 
 # Start an "askfirst" shell on the console (whatever that may be)
 ::askfirst:-/bin/sh
